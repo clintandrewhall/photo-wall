@@ -1,0 +1,43 @@
+html { background: #000; padding: 0 0 10px 0; }
+body { font: 15px Raleway, serif; }
+.message { font-size: 28px; margin: 30px 15px; }
+.panel { background: #000; color: #EEE; width: 1024px; height: 768px;
+  position: absolute; top: 50%; left: 50%; margin: -384px 0 0 -512px;
+  overflow: hidden; }
+.scroll { height: 600px; width: 3000px; border-bottom: 1px solid #FFF;
+  overflow: hidden; }
+.latest-pics { width: 1200px; overflow: hidden; }
+.column { width: 160px; height: 600px; float: left; overflow: hidden; }
+.column.medium { width: 324px; }
+.column.large { width: 486px; }
+.latest h2 {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ED1C24), to(#AA1317));
+  color: #E8E8E8; height: 46px; font-size: 28px; padding: 0;
+  text-shadow: 1px 1px 0 #333333; }
+.lim { height: 47px; width: 330px; display: block; line-height: 47px;
+  text-indent: 8px; }
+.pw { float: right; font-size: 20px; text-align: right;
+  padding: 4px 8px 0 0; text-transform: uppercase; }
+.tag { font-size: 12px; display: block; text-align: right; line-height: 16px; }
+.fader { float: left; height: 120px; width: 160px; background-size: cover;
+  background-position: 50% 50%; }
+.not-enough { text-align: center; font-size: 40px; width: 1024px;
+  margin-top: 275px; }
+.coming { font-size: 32px; text-align: center; width: 1024px;
+  padding: 20px 0 0 0; }
+.newest { position: absolute; width: 120px; height: 60px; right: -50px;
+  font-size: 20px; bottom: 30px;
+  text-transform: uppercase; transform: rotate(-90deg); text-align: center; }
+.wall-image { display: block; float: left; border: 1px solid #000;
+  height: 120px; width: 160px; overflow: hidden; position: relative;
+  background-size: cover; background-position: 50% 50%; }
+.wall-image.image-medium { height: 242px; width: 322px; border-width: 1px; }
+.wall-image.image-large { height: 364px; width: 484px; border-width: 1px; }
+.scroll { overflow: hidden; position: relative; }
+.polaroid { position: absolute; top: 800px; left: 0; transition: transform 1s;
+  height: 240px; width: 240px; overflow: hidden; border: 15px solid #FFF;
+  border-bottom-width: 50px; box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
+  border-radius: 3px; }
+.polaroid .polaroid-image { position: relative; height: 100%; width: 100%;
+  background-position: 50% 50%; background-size: cover; }
+.polaroid.right { left: 900px; }
