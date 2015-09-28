@@ -8,8 +8,9 @@ It uses the Facebook API to grab photos from either an event or a group on each 
 You'll need a couple of things:
 * Long-term access token from Facebook with group and event permissions.
 * An event, group, or other FBID with an 'images' endpoint.
+* A wall title for index.ejs.
 
-You provide the latter.  The former you can get by pasting the following into the Facebook [Graph API Explorer](https://developers.facebook.com/tools/explorer/):
+You provide the latter.  The first you can get by pasting the following into the Facebook [Graph API Explorer](https://developers.facebook.com/tools/explorer/):
 
     oauth/access_token?grant_type=fb_exchange_token&client_id={client_id}&client_secret={client_secret}&fb_exchange_token={a_short_term_token}
 
