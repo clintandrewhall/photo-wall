@@ -1,6 +1,12 @@
 # Photo Wall
 ### Introduction
-This is a photo wall with two effects: scrolling wall and tossed Polaroids. The code is from a pretty early time in my career, so it's a bit hacky, but it works really well, so have fun with it.
+This is a photo wall with two effects: a scrolling wall and tossed Polaroids.
+
+![photo wall](https://github.com/clintandrewhall/photo-wall/raw/master/wall.png)
+
+![polaroids](https://github.com/clintandrewhall/photo-wall/raw/master/polaroid.png)
+
+The code is from a pretty early time in my career, so it's a bit hacky, but it works really well, so have fun with it.
 
 It uses the Facebook API to grab photos from either an event or a group on each effect load.  So, for example, people can upload photos to an event and they'll automatically get included in the wall, (and the photos get shared with everyone there, how cool is that?)
 
