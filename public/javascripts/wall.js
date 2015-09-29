@@ -1,6 +1,7 @@
 var PhotoWall = PhotoWall || {};
 
 var COL_MAX = 10;
+var MIN_IMAGES = 8;
 var SPEED = 4000;
 
 PhotoWall.Wall = function() {
@@ -18,15 +19,14 @@ PhotoWall.Wall = function() {
       s[0].parentNode.removeChild(s[0]);
     }
 
-    var images = PhotoWall.getImages(columnSize ? 8 : 6);
-
-    if (!images || images.length <= 0) {
+    if (PhotoWall.getImages().length < MIN_IMAGES) {
       x$('.scroll').html('<div class=\'not-enough\'>Welcome!</div>');
       setTimeout(function() {
         addColumn(columnSize);
         scroll();
       }, SPEED);
     } else {
+      var images = PhotoWall.getImages(columnSize ? 8 : 6);
       var markup = '<div class=\'column ' + columnSize + '\'>';
 
       for(var i = 0; i < images.length; i++) {
@@ -71,7 +71,7 @@ PhotoWall.Wall = function() {
             if (columnCount < COL_MAX) {
               if (useMedium) {
                 addColumn('medium');
-                useMedium = !useMedium
+                useMedium = !useMedium;
               }
               else if (useLarge) {
                 addColumn('large');
@@ -122,14 +122,14 @@ PhotoWall.Wall = function() {
   }
 
   function wallEnding(end) {
-    wallEnd = end
+    wallEnd = end;
   }
 
   return {
     'addColumn' : addColumn,
     'wallEnd' : wallEnding,
     'init' : init
-  }
+  };
 }();
 
 PhotoWall.Effects.push(PhotoWall.Wall);

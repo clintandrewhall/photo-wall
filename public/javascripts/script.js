@@ -1,60 +1,85 @@
 
-var EVENT_ID = 'EVENT_OR_GROUP_ID';
-var APP_ID = 'APP_ID';
-var ACCESS_TOKEN = 'LONG_TERM_ACCESS_TOKEN';
+var EVENT_ID = 'event_or_group_id';
+var APP_ID = 'app_id';
+var ACCESS_TOKEN = 'token';
 
 var NEWEST_COUNT = 7;
 
-var PhotoWall = PhotoWall || {};
-PhotoWall.Effects = [];
-PhotoWall.images = [];
-PhotoWall.imageStore = [];
-PhotoWall.currentEffect = 0;
+var PhotoWall = (function() {
+  var images = [];
+  var imageStore = [];
+  var currentEffect = 0;
 
-PhotoWall.loadPhotos = function(callback) {
-  FB.api(
-    '/' + EVENT_ID + '/photos?fields=images',
-    'get',
-    { access_token: ACCESS_TOKEN },
-    function (response) {
-      if (response && !response.error) {
-        PhotoWall.images = JSON.parse(JSON.stringify(response.data));
-        PhotoWall.imageStore = JSON.parse(JSON.stringify(response.data));
+  function loadPhotos(callback) {
+    FB.api(
+      '/' + EVENT_ID + '/photos?fields=images',
+      'get',
+      { access_token: ACCESS_TOKEN },
+      function (response) {
+        if (response && !response.error) {
+          if (response.data.length !== imageStore.length) {
+            console.log('Found ' + (response.data.length - imageStore.length) + ' new images');
+            images = JSON.parse(JSON.stringify(response.data));
+            imageStore = JSON.parse(JSON.stringify(response.data));
 
-        var newest = response.data.slice(0, NEWEST_COUNT);
-        var n = '';
-        newest.forEach(function(newPhoto) {
-          n += "<p class=\"fader\" style=\"background-image: url(" + newPhoto.images[0].source + ")\"></p>";
-        });
-        x$(".latest-pics").html(n);
-        callback();
-      } else {
-        console.log(response.error);
+            var newest = response.data.slice(0, NEWEST_COUNT);
+            var n = '';
+            newest.forEach(function(newPhoto) {
+              n += "<p class=\"fader\" style=\"background-image: url(" + newPhoto.images[0].source + ")\"></p>";
+            });
+            x$(".latest-pics").html(n);
+          }
+          if (callback) {
+            callback();
+          }
+        } else {
+          console.log(response.error);
+        }
       }
-    }
-  );
-}
-
-PhotoWall.getImages = function (count) {
-  if (PhotoWall.images.length < count) {
-    PhotoWall.images = JSON.parse(JSON.stringify(PhotoWall.imageStore));
-    PhotoWall.images.sort( function() { return 0.5 - Math.random() } );
+    );
   }
-  return PhotoWall.images.splice(0, count);
-}
 
-PhotoWall.nextEffect = function() {
-  PhotoWall.loadPhotos(function() {
-    var effect = PhotoWall.Effects[PhotoWall.currentEffect];
+  function getImages(count) {
+    if (!count) {
+      return imageStore;
+    }
+
+    if (images && images.length < count) {
+      images = JSON.parse(JSON.stringify(imageStore));
+      images.sort( function() { return 0.5 - Math.random(); } );
+    }
+
+    return images.splice(0, count);
+  }
+
+  function nextEffect() {
+    var effect = PhotoWall.Effects[currentEffect];
     if (effect) {
       effect.init();
-      PhotoWall.currentEffect++;
+      currentEffect++;
     } else {
-      PhotoWall.currentEffect = 0;
-      PhotoWall.Effects[PhotoWall.currentEffect].init();
+      currentEffect = 0;
+      PhotoWall.Effects[currentEffect].init();
     }
-  });
-}
+  }
+
+  function startup() {
+    loadPhotos(function() {
+      nextEffect();
+      setInterval(function() {
+        loadPhotos();
+      }, 3000);
+    });
+  }
+
+  return {
+    Effects: [],
+    loadPhotos: loadPhotos,
+    getImages: getImages,
+    nextEffect: nextEffect,
+    startup: startup,
+  };
+})();
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -62,7 +87,7 @@ window.fbAsyncInit = function() {
     xfbml      : true,
     version    : 'v2.4',
   });
-  PhotoWall.nextEffect();
+  PhotoWall.startup();
 };
 
 (function(d, s, id){
