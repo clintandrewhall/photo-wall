@@ -1,13 +1,14 @@
 html { background: #000; padding: 0 0 10px 0; }
 body { font: 15px Raleway, serif; }
 .message { font-size: 28px; margin: 30px 15px; }
-.panel { background: #000; color: #EEE; width: 1024px; height: 768px;
-  position: absolute; top: 50%; left: 50%; margin: -384px 0 0 -512px;
+.panel { background: #000; color: #EEE; height: 768px; left: 0; right: 0;
+  position: absolute; top: 50%; margin: -384px 0 0 0;
   overflow: hidden; }
-.scroll { height: 600px; width: 3000px; border-bottom: 1px solid #FFF;
+.scroll { width: 200%; height: 100%; border-bottom: 1px solid #FFF;
   overflow: hidden; }
-.latest-pics { width: 1200px; overflow: hidden; }
-.column { width: 160px; height: 600px; float: left; overflow: hidden; }
+.latest { position: absolute; top: calc(100% - 166px); width: 100%;}
+.latest-pics { overflow: hidden; width: 150%; }
+.column { width: 160px; height: 100%; float: left; overflow: hidden; }
 .column.medium { width: 324px; }
 .column.large { width: 486px; }
 .latest h2 {
@@ -15,9 +16,9 @@ body { font: 15px Raleway, serif; }
   color: #E8E8E8; height: 46px; font-size: 28px; padding: 0;
   text-shadow: 1px 1px 0 #333333; }
 .lim { height: 47px; width: 330px; display: block; line-height: 47px;
-  text-indent: 8px; }
+  text-indent: 16px; }
 .pw { float: right; font-size: 20px; text-align: right;
-  padding: 4px 8px 0 0; text-transform: uppercase; }
+  padding: 4px 16px 0 0; text-transform: uppercase; }
 .tag { font-size: 12px; display: block; text-align: right; line-height: 16px; }
 .fader { float: left; height: 120px; width: 160px; background-size: cover;
   background-position: 50% 50%; }

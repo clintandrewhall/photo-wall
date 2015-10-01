@@ -28,11 +28,8 @@ PhotoWall.Polaroid = function() {
       var i = images[0];
       x$('.scroll').html('bottom', '<div class=\'polaroid' + (left ? '' : ' right') + '\'><p class=\'polaroid-image\' style=\'background-image: url(' + i.images[0].source + ');\' /></div>');
       setTimeout(function() {
-        /* TOP: -500 to -850 */
-        /* LEFT: 300 to 800 */
-        /* RIGHT: -100 to -900 */
-        var t = -(500 + Math.floor(Math.random() * 350)),
-          l = left ? (300 + Math.floor(Math.random() * 500)) : -(100 + Math.floor(Math.random() * 800)),
+        var t = -(400 + Math.floor(Math.random() * (window.innerHeight - 300))),
+          l = left ? (Math.floor(Math.random() * (window.innerWidth - 200))) : -(Math.floor(Math.random() * (window.innerWidth - 400))),
           r = (Math.floor(Math.random() * 45));
 
         r = left ? r : -r;

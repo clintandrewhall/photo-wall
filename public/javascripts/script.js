@@ -1,9 +1,9 @@
 
-var EVENT_ID = 'event_or_group_id';
-var APP_ID = 'app_id';
-var ACCESS_TOKEN = 'token';
+var EVENT_ID = '402732886592984';
+var APP_ID = '700953713372745';
+var ACCESS_TOKEN = 'CAAJ9glYSrhQBALhhevKrdZATH7SZAMG1vprTtiPH4ZANg0awhkpZAiaPUx5ZBKKIMfYAXOZBg4ZBTDdDgE7CZCSw2vGcHj2xOoH2HQr5ULbR66ZCZCenN8BVPrjMcESxmHFmElobAByVhITFTLt3n6LGlsEwwiOaW6D8epJpNpwwe2ezQAIHLvjOtoBUpRTql84QichBGggk3RHAZDZD';
 
-var NEWEST_COUNT = 7;
+var NEWEST_COUNT = Math.round(window.innerWidth / 160);
 
 var PhotoWall = (function() {
   var images = [];
